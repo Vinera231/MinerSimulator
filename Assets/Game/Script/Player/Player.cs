@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private float _minHeight = -3f;
     [SerializeField] private float _maxHeight = 5f;
+    [SerializeField] private float _minPosition = -7f;
+    [SerializeField] private float _maxPosition = 7f;
 
     private float _rotationPlayer = 180f;
 
@@ -32,6 +34,8 @@ public class Player : MonoBehaviour
         position.y += moveDirection.y * _speed * Time.deltaTime;
 
         position.y = Mathf.Clamp(position.y, _minHeight, _maxHeight);
+        position.x = Mathf.Clamp(position.x,_minPosition,_maxPosition);
+
 
         transform.position = position;
 
