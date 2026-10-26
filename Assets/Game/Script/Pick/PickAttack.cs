@@ -1,55 +1,63 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
 public class PickAttack : MonoBehaviour, IPickAttack
 {
     [SerializeField] private float _damage = 10f;
+    [SerializeField] private LayerMask _resourceLayer;
 
+    private PickAnimation _pickAnimation;
     private int _source;
     private Resource _resource;
     private InputReader _inputReader;
     private ViewResourse _viewResourse;
 
     public float Damage => _damage;
-    public int Source => _source;
 
-    [Inject]
-    public void Construct(
-        Resource resource,
-        InputReader inputReader,
-        PickAnimation pickAnimation,
-        ViewResourse viewResourse)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        _resource = resource;
-        _inputReader = inputReader;
-        _viewResourse = viewResourse;
-
-        _resource.ResourceDestroyed += AddResource;
-        _inputReader.Picked += Attack;
-
-        _viewResourse.ResourceShow(_source);
-    }
-
-    private void OnDestroy()
-    {
-        if (_inputReader != null)
-        {
-            _inputReader.Picked -= Attack;
-        }
-
-        if (_resource != null)
-        {
-            _resource.ResourceDestroyed -= AddResource;
-        }
-    }
-
-    private void Attack()
-    {
-        if (_resource == null)
+        if ((_resourceLayer.value & (1 << collision.gameObject.layer)) == 0)
         {
             return;
         }
 
+        Resource resource = collision.GetComponentInParent<Resource>();
+
+        if (resource == null || resource == _resource)
+        {
+            return;
+        }
+
+        _resource = resource;
+        _resource.ResourceDestroyed += AddResource;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Resource resource = collision.GetComponentInParent<Resource>();
+
+        if (resource == _resource)
+        {
+            _resource.ResourceDestroyed -= AddResource;
+            _resource = null;
+        }
+    }
+
+    [Inject]
+    public void Construct(InputReader inputReader, PickAnimation pickAnimation, ViewResourse viewResourse)
+    {
+        _inputReader = inputReader;
+        _viewResourse = viewResourse;
+        _pickAnimation = pickAnimation;
+
+        _inputReader.Picked += Attack;
+        _viewResourse.ResourceShow(_source);
+    }
+
+    private void Attack()
+    {
+        _pickAnimation.PlayAttack();
         _resource.MineResource(Damage);
     }
 

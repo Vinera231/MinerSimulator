@@ -14,17 +14,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = 0f;
-
-        if (_inputReader.MoveUp)
-        {
-            moveY = 1f;
-        }
-        else if (_inputReader.MoveDown)
-        {
-            moveY = -1f;
-        }
+        float moveX = _inputReader.MoveHorizontal;
+        float moveY = _inputReader.MoveVertical;
 
         Vector2 moveDirection = new Vector2(moveX, moveY).normalized;
 

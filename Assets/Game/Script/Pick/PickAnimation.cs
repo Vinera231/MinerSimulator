@@ -8,25 +8,13 @@ public class PickAnimation : MonoBehaviour
 
     [SerializeField] private Animator _animator;
 
-    private InputReader _inputReader;
-
-    [Inject]
-    private void Construct(InputReader inputReader)
-    {
-        _inputReader = inputReader;
-        _inputReader.Picked += PlayAttack;
-    }
-
-    private void OnDestroy()
-    {
-        if (_inputReader != null)
-        {
-            _inputReader.Picked -= PlayAttack;
-        }
-    }
+    public InputReader _inputReader;
 
     public void PlayAttack()
     {
+        if (_animator == null)
+            return;
+
         _animator.Play(s_attackAnimationID, 0, 0f);
     }
 }

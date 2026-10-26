@@ -1,23 +1,52 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputReader: MonoBehaviour
 {
-    private const  KeyCode _mouseClick = KeyCode.Mouse0;
+    public float MoveVertical
+    {
+        get
+        {
+            if (Keyboard.current == null)
+                return 0f;
 
-    public bool MoveUp => Input.GetKey(KeyCode.W);
-    public bool MoveDown => Input.GetKey(KeyCode.S);
+            float moveY = 0f;
+
+            if (Keyboard.current.wKey.isPressed)
+                moveY = 1f;
+          
+            if (Keyboard.current.sKey.isPressed)
+                moveY = -1f;
+
+            return moveY;
+        }
+    }  
+
+    public float MoveHorizontal
+    {
+        get
+        {
+            if (Keyboard.current == null)
+                return 0f;
+
+            float moveX = 0f;
+
+            if (Keyboard.current.dKey.isPressed)
+                moveX = 1f;
+           
+            if (Keyboard.current.aKey.isPressed)
+                moveX = -1f;
+
+            return moveX;
+        }
+    }
 
     public event Action Picked;
 
     public void Update()
-    {
-        ReadPickKeyCode();
-    }
-
-    public void ReadPickKeyCode()
-    {
-        if(Input.GetKeyDown(_mouseClick))
+    {     
+        if(Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
             Picked?.Invoke();
     }
 }
