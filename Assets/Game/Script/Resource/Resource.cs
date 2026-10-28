@@ -5,10 +5,14 @@ public class Resource : MonoBehaviour
 {
     [SerializeField] private float _health;
     [SerializeField] private float _maxHealth;
-    [SerializeField] private int _sours;
+    [SerializeField] private int _amount;
     [SerializeField] private HealthView _healthView;
+    [SerializeField] private ResourceType _resourceType;
 
-    public event Action<int> ResourceDestroyed;
+    public event Action<ResourceType, int> ResourceDestroyed;
+
+    public ResourceType Type => _resourceType;
+    public int Amounts => _amount;
 
     private void Start()
     {
@@ -20,11 +24,10 @@ public class Resource : MonoBehaviour
         _health -= damage;
         _healthView.ShowHealth(_health, _maxHealth);
     
-        if (_health < 0)
+        if (_health <= 0f)
         {
-            ResourceDestroyed?.Invoke(_sours);
+            ResourceDestroyed?.Invoke(_resourceType,_amount);
             Destroy(gameObject);
         }
-
     }
 }

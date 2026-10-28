@@ -334,8 +334,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Resource
   _health: 100
   _maxHealth: 100
-  _sours: 10
-  _healthView: {fileID: 0}
+  _amount: 10
+  _healthView: {fileID: 2273034299862176629}
+  _resourceType: 0
 --- !u!1 &6065740172589222078
 GameObject:
   m_ObjectHideFlags: 0

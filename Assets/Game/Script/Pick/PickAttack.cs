@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -8,12 +7,15 @@ public class PickAttack : MonoBehaviour, IPickAttack
     [SerializeField] private LayerMask _resourceLayer;
 
     private PickAnimation _pickAnimation;
-    private int _source;
     private Resource _resource;
     private InputReader _inputReader;
-    private ViewResourse _viewResourse;
+    private ViewResourseRock _viewResourseRock;
+    private ViewResourseOre _viewResourseOre;
 
     public float Damage => _damage;
+
+    private int _rockAmount;
+    private int _ironAmount;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,7 +30,7 @@ public class PickAttack : MonoBehaviour, IPickAttack
         {
             return;
         }
-
+      
         _resource = resource;
         _resource.ResourceDestroyed += AddResource;
     }
@@ -45,25 +47,47 @@ public class PickAttack : MonoBehaviour, IPickAttack
     }
 
     [Inject]
-    public void Construct(InputReader inputReader, PickAnimation pickAnimation, ViewResourse viewResourse)
+    public void Construct(InputReader inputReader, PickAnimation pickAnimation, ViewResourseRock viewResourse,ViewResourseOre viewResourseIron)
     {
         _inputReader = inputReader;
-        _viewResourse = viewResourse;
+        _viewResourseRock = viewResourse;
+        _viewResourseOre = viewResourseIron;
         _pickAnimation = pickAnimation;
 
         _inputReader.Picked += Attack;
-        _viewResourse.ResourceShow(_source);
+        UpdateViewResource();
     }
 
     private void Attack()
     {
         _pickAnimation.PlayAttack();
+       
+        if(_resource != null)
         _resource.MineResource(Damage);
     }
 
-    private void AddResource(int amount)
+    private void AddResource( ResourceType resourceType,int amount)
     {
-        _source += amount;
-        _viewResourse.ResourceShow(_source);
+        if (resourceType == ResourceType.Rock)
+            _rockAmount +=amount;
+        else if (resourceType == ResourceType.Ore)
+            _ironAmount +=amount;
+
+        UpdateViewResource();
+    }
+
+    private void UpdateViewResource()
+    {
+        _viewResourseRock.RockResourceShow(_rockAmount);
+        _viewResourseOre.OreResourceShow(_ironAmount);
+    }
+
+    private void OnDestroy()
+    {
+        if(_inputReader != null)
+            _inputReader.Picked -= Attack;
+
+        if(_resource != null)
+            _resource.ResourceDestroyed -= AddResource;
     }
 }
