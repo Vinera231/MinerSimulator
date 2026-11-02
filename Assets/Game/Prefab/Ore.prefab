@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8234d19334d8644d9b8babcf29ffbf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZonaHealth
+  _showHealth: {fileID: 6127266516799952987}
 --- !u!1 &5010351117221795003
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +463,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthView
   _image: {fileID: 5775428203342702024}
-  _health: {fileID: 6954251715518429201}
 --- !u!1 &6954251715518429201
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5934382034764053080
 RectTransform:
   m_ObjectHideFlags: 0

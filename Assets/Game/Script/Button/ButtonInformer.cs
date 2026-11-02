@@ -1,0 +1,26 @@
+using System;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+
+[RequireComponent(typeof(Button))]
+public class ButtonInformer : MonoBehaviour, IPointerEnterHandler
+{
+    [SerializeField] private Button _button;
+
+    public event Action Clicked;
+    public event Action Entered;
+
+    private void OnEnable() =>
+        _button.onClick.AddListener(OnClick);
+
+    private void OnDisable() =>
+        _button.onClick.RemoveListener(OnClick);
+    protected virtual void OnClick() =>
+        Clicked?.Invoke();
+
+    public void OnPointerEnter(PointerEventData eventData) =>
+        Entered?.Invoke();
+
+}

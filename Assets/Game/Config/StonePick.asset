@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3d411a62c5d404ab187c92dea0fab1, type: 3}
+  m_Name: StonePick
+  m_EditorClassIdentifier: Assembly-CSharp::ChangePick
+  _currentPrefab: {fileID: 7523870564151877373, guid: 49752ea6ab1c14342a7b9f33e7b89954, type: 3}

@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class InputReader: MonoBehaviour
 {
+    private const KeyCode _shopOpen = KeyCode.E;
     public float MoveVertical
     {
         get
@@ -43,10 +44,14 @@ public class InputReader: MonoBehaviour
     }
 
     public event Action Picked;
+    public event Action Entered;
 
     public void Update()
     {     
         if(Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
             Picked?.Invoke();
+
+        if(Keyboard.current != null && Keyboard.current.eKey.isPressed)
+            Entered?.Invoke();
     }
 }
