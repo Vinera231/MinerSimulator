@@ -5804,7 +5804,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6259,11 +6259,11 @@ PrefabInstance:
       objectReference: {fileID: 567436953}
     - target: {fileID: 6911348891316646564, guid: 787c84e200d02934fac8e5406cc11375, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -4.78
       objectReference: {fileID: 0}
     - target: {fileID: 6911348891316646564, guid: 787c84e200d02934fac8e5406cc11375, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.15
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 6911348891316646564, guid: 787c84e200d02934fac8e5406cc11375, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6300,6 +6300,10 @@ PrefabInstance:
     - target: {fileID: 6954251715518429201, guid: 787c84e200d02934fac8e5406cc11375, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387829005526163057, guid: 787c84e200d02934fac8e5406cc11375, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8854083483276151502, guid: 787c84e200d02934fac8e5406cc11375, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6580,6 +6584,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7387829005526163057, guid: 33ed0de08aeac0544b39bfd7a4c86041, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8854083483276151502, guid: 33ed0de08aeac0544b39bfd7a4c86041, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.8744376
@@ -6636,6 +6644,10 @@ PrefabInstance:
     - target: {fileID: 958344808408563289, guid: 159892941c2b8d144be0b098c8015875, type: 3}
       propertyPath: _resourceLayer.m_Bits
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451705600577941083, guid: 159892941c2b8d144be0b098c8015875, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5460784127396699299, guid: 159892941c2b8d144be0b098c8015875, type: 3}
       propertyPath: _changPick
