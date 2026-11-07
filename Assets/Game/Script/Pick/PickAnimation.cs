@@ -3,19 +3,29 @@ using UnityEngine;
 public class PickAnimation : MonoBehaviour
 {
     private static readonly int s_attackAnimationID =
-     Animator.StringToHash("PickAttack");
+        Animator.StringToHash("PickAttack");
 
     [SerializeField] private Animator _animator;
 
-    public bool _isPlaying {  get; private set; }
-    public InputReader _inputReader;
+    public bool IsPlaying { get; private set; }
+
+    public void SetAnimation(Animator animator)
+    {
+        _animator = animator;
+        IsPlaying = false;
+    }
 
     public void PlayAttack()
     {
-        if (_animator != null || _isPlaying)
-            _isPlaying = false;
+        if (_animator == null)
+            return;
 
-        _isPlaying = true;
+        IsPlaying = true;
         _animator.Play(s_attackAnimationID, 0, 0f);
-    }      
+    }
+
+    public void OnAttackAnimationEnd()
+    {
+        IsPlaying = false;
+    }
 }

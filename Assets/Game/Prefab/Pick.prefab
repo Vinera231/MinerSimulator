@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 958344808408563289}
   - component: {fileID: 7302705183502824677}
   - component: {fileID: 1248724947806688382}
-  - component: {fileID: 5460784127396699299}
   m_Layer: 0
   m_Name: Pick
   m_TagString: Untagged
@@ -222,18 +221,3 @@ BoxCollider2D:
   m_AutoTiling: 1
   m_Size: {x: 3.66, y: 4.18}
   m_EdgeRadius: 0
---- !u!114 &5460784127396699299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7523870564151877373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 055a8a4e7f3deeb4589a1c9244e46269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickSwitcher
-  _changPick: {fileID: 11400000, guid: 03dfa98844262854ebdf2aa480e7f9c1, type: 2}
-  _pickTransform: {fileID: 7641038338414601008}
-  _currentPick: {fileID: 7523870564151877373}

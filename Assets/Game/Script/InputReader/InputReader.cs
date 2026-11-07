@@ -56,7 +56,7 @@ public class InputReader: MonoBehaviour
            _nextPickTime = Time.time + _delay;
         }
        
-        if(Keyboard.current != null && Keyboard.current.eKey.isPressed)
+        if(Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
             Entered?.Invoke();
     }
 }

@@ -1,6 +1,6 @@
 using Zenject;
 
-public class Shop : MonoInstaller
+public class ShopSystem : MonoInstaller
 {
     public ShopPanel _panel;
     public ShopShower _shower;

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7641038338414601008}
   - component: {fileID: 4451705600577941083}
   - component: {fileID: 7997418911929318060}
-  - component: {fileID: 6150668419573980881}
   - component: {fileID: 958344808408563289}
   - component: {fileID: 1248724947806688382}
   - component: {fileID: 4337986547094500322}
+  - component: {fileID: 8603227748306246129}
   m_Layer: 0
   m_Name: PickLevel2
   m_TagString: Untagged
@@ -118,20 +118,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6150668419573980881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7523870564151877373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e3415ebec109924d89c4f03ba2e4fc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickAnimation
-  _animator: {fileID: 7997418911929318060}
-  _inputReader: {fileID: 0}
 --- !u!114 &958344808408563289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,3 +207,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8603227748306246129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7523870564151877373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3415ebec109924d89c4f03ba2e4fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickAnimation
+  _animator: {fileID: 7997418911929318060}
+  _inputReader: {fileID: 0}

@@ -55,6 +55,7 @@ public class PickAttack : MonoBehaviour, IPickAttack
 
     private void Attack()
     {
+        if (_pickAnimation != null)
         _pickAnimation.PlayAttack();
 
         if (_resource != null)

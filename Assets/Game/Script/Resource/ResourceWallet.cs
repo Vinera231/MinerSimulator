@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class ResourceWallet : MonoBehaviour
@@ -61,7 +60,10 @@ public class ResourceWallet : MonoBehaviour
 
     private void UpdateViewResource()
     {
+        if(_viewResourseOre != null) 
         _viewResourseOre.OreResourceShow(_ironAmount);
-        _viewResourseRock.RockResourceShow(_rockAmount);
+
+        if (_viewResourseRock != null)
+            _viewResourseRock.RockResourceShow(_rockAmount);
     }
 }
