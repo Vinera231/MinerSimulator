@@ -103,21 +103,17 @@ public class ShopInitializer : MonoBehaviour
 
         if (!_resourceWallet.TrySpend(purchase.Type, purchase.Amount))
         {
-            Debug.Log("Not enough resources!");
             return;
         }
 
         if (!_pickSwitcher.UnlockAndSelect(index))
         {
-            Debug.LogError("Failed to unlock pick!");
             return;
         }
 
         _items[index].SetPurchased(true);
 
         Select(index);
-
-        Debug.Log("Pick purchased!");
     }
 
     private void SelectPick(int index)
