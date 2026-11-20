@@ -40,7 +40,6 @@ public class PickAttack : MonoBehaviour, IPickAttack
             _resource.ResourceDestroyed -= AddResource;
             _resource = null;
         }
-
     }
 
     [Inject]

@@ -72,12 +72,11 @@ public class ShopInitializer : MonoBehaviour
 
             item.SetPurchased(isPurchased);
             item.SetSelected(false);
-
             _items.Add(item);
         }
 
         if (_items.Count > 0)
-            Select(0);
+            Select(_pickSwitcher._currentPickIndex);
     }
 
     private void OnPickButtonClicked(int index)

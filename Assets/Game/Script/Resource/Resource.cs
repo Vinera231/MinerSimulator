@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
+using UnityEditor.Overlays;
 using UnityEngine;
 
 public class Resource : MonoBehaviour
 {
+    [SerializeField] private string _id;
     [SerializeField] private float _health;
     [SerializeField] private float _maxHealth;
     [SerializeField] private int _amount;
@@ -11,12 +14,19 @@ public class Resource : MonoBehaviour
 
     public event Action<ResourceType, int> ResourceDestroyed;
 
-    public ResourceType Type => _resourceType;
-    public int Amounts => _amount;
-
     private void Start()
     {
         _maxHealth = _health;
+
+        if (string.IsNullOrEmpty(_id))
+            _id = $"{gameObject.scene.name}_{transform.position.x:F2}_{transform.position.y:F2}";
+
+        SaveData saveData = Save.LoadGame();
+        if (saveData.MinedResources !=null && saveData.MinedResources.Contains(_id))
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
     public void MineResource(float damage)
@@ -26,8 +36,22 @@ public class Resource : MonoBehaviour
     
         if (_health <= 0f)
         {
-            ResourceDestroyed?.Invoke(_resourceType,_amount);
+            ResourceDestroyed?.Invoke(_resourceType, _amount);
+            SaveMiner();
             Destroy(gameObject);
         }
+    }
+
+    private void SaveMiner()
+    {
+       SaveData saveData = Save.LoadGame();
+
+        if (saveData.MinedResources == null)
+            saveData.MinedResources = new List<string>();
+
+        if (!saveData.MinedResources.Contains(_id))
+            saveData.MinedResources.Add(_id);
+
+        Save.SaveGame(saveData);
     }
 }

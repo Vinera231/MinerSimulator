@@ -8,11 +8,13 @@ public class PickSwitcher : MonoBehaviour
 
     private bool[] _isPurchased;
     private GameObject _currentPick;
+    public int _currentPickIndex;
 
     public int Count => _picks.Length;
 
     public void Initialize()
     {
+        SaveData saveData = Save.LoadGame();
         _isPurchased = new bool[_picks.Length];
 
         if (_picks.Length == 0)
@@ -22,11 +24,21 @@ public class PickSwitcher : MonoBehaviour
         {
             if (_picks[i] != null)
                 _picks[i].SetActive(false);
+
+            if (saveData.PurchasedPick != null &&
+              i < saveData.PurchasedPick.Length)
+            {
+                _isPurchased[i] = saveData.PurchasedPick[i];
+            }
         }
 
         _isPurchased[0] = true;
 
-        UseItem(0);
+        if (saveData.PurchasedPickCount >= 0 && saveData.PurchasedPickCount < _picks.Length &&
+            _isPurchased[saveData.PurchasedPickCount])
+            _currentPickIndex = saveData.PurchasedPickCount;
+
+        UseItem(_currentPickIndex);
     }
 
     public bool IsPurchased(int index)
@@ -62,6 +74,8 @@ public class PickSwitcher : MonoBehaviour
             _currentPick.SetActive(false);
 
         _currentPick = _picks[index];
+       _currentPickIndex = index;
+
         _currentPick.SetActive(true);
 
         Animator animator =
@@ -70,6 +84,7 @@ public class PickSwitcher : MonoBehaviour
         if (_pickAnimation != null)
             _pickAnimation.SetAnimation(animator);
 
+        SavePick();
         return true;
     }
 
@@ -79,5 +94,15 @@ public class PickSwitcher : MonoBehaviour
            index >= 0 &&
            index < _picks.Length &&
            _picks[index] != null;
+    }
+
+    public void SavePick()
+    {
+        SaveData saveData = Save.LoadGame();
+
+        saveData.PurchasedPick = _isPurchased;
+        saveData.PurchasedPickCount = _currentPickIndex;
+
+        Save.SaveGame(saveData);
     }
 }

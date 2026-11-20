@@ -7,6 +7,7 @@ public class PickItem : MonoBehaviour
 {
     private const string RockName = "<sprite name=\"Rock3\">";
     private const string OreName = "<sprite name=\"OreIcon\">";
+    private const string CoalName = "<sprite name=\"CoalIcon\">";
 
     [SerializeField] private Image _background;
     [SerializeField] private TMP_Text _name;
@@ -68,6 +69,7 @@ public class PickItem : MonoBehaviour
         {
             ResourceType.Ore => OreName,
             ResourceType.Rock => RockName,
+            ResourceType.Coal => CoalName,
             ResourceType.None => string.Empty,
             _ => throw new InvalidOperationException("Unknown resource type")
         };
